@@ -2,6 +2,11 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from . import model
+from .database import engine
+
+model.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 class Item(BaseModel):
